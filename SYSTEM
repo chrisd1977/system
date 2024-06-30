@@ -1,0 +1,54 @@
+
+=====
+WF([])
+
+T: Sort    x not yet defined
+============================
+     WF(G :: x: T)
+
+G |- t: T   x not yet defined
+=============================
+     WF(G :: x := t: T)
+
+   WF(G)    i < j
+======================
+G |- Type(i): Type (j)
+
+      WF(G)
+==================
+G |- Prop: Type(i)
+
+WF(G)    x defined with T in G
+==============================
+       G |- x: T
+
+G |- T: Type(i)    G :: x: T |- U: Type(j)
+==========================================
+   G |- forall x: T, U: Type(max(i, j))
+
+G |- T: Sort    G :: x: T |- U: Prop
+====================================
+     G |- forall x: T, U: Prop
+
+G |- forall x: T, V: Sort      G :: x: T |- U: V
+================================================
+   G |- lambda x: T, U : forall x: T, V
+
+
+G |- t: forall x: U, T    G |- u: U
+===================================
+        G |- t u: T{x/u}
+
+
+Write t = u when t and u are alpha/beta convertible
+If t = u, then t <= u.
+if i <= j, then Type(i) <= Type(j)
+Prop <= Type(i)
+
+  T = U         G :: x: T |- T' <= U'
+=======================================
+G |- forall x: T, T' <= forall x: U, U'
+
+G |- U: Sort    G |- t: T   G |- T <= U
+=======================================
+                 t: U

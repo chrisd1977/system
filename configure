@@ -1,0 +1,55 @@
+#!/bin/bash
+
+function usage {
+  echo
+  echo Usage: $0 --prefix=prefix --bindir=bindir --libdir=libdir
+  echo
+}
+
+for i in "$@"; do
+  case $i in
+    --prefix=*)
+      PREFIX="${i#*=}"
+      shift
+      ;;
+    --bindir=*)
+      BINDIR="${i#*=}"
+      shift
+      ;;
+    --libdir=*)
+      LIBDIR="${i#*=}"
+      shift
+      ;;
+    --default)
+      DEFAULT=YES
+      shift # past argument with no value
+      ;;
+    -*|--*)
+      echo "Unknown option $i"
+      usage
+      exit 1
+      ;;
+  esac
+done
+
+if [ "$PREFIX" = "" ]; then
+  PREFIX=/usr/local
+fi
+if [ "$BINDIR" = "" ]; then
+  BINDIR=$PREFIX/bin
+fi
+if [ "$LIBDIR" = "" ]; then
+  LIBDIR=$PREFIX/lib/system
+fi
+
+echo prefix=$PREFIX
+echo bindir=$BINDIR
+echo libdir=$LIBDIR
+
+cat <<EOT > .config
+BINDIR=$BINDIR
+LIBDIR=$LIBDIR
+EOT
+
+rm -f main.o
+

@@ -1,0 +1,26 @@
+Installation instructions
+
+There is a configure script in this directory that is used to specify
+the installation prefixes. This needs to be run before make commands
+can be issued.  The following make targets are of relevance to the
+user.
+
+make
+    Make without target compiles the system executable.
+
+make check
+    Run the unit tests.
+
+make install
+    Install the system executable and the standard library.
+
+make uninstall
+    Undoes the 'make install' command.
+
+make clean
+    Delete all compiled files.
+
+make distclean
+    In addition to what 'make clean' does also undo the actions of
+    the configure script.
+

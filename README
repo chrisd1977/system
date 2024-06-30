@@ -1,0 +1,68 @@
+System
+
+System is a proof assistent. It is also an attempt to answer the
+question what a foundation of mathematics is or could be. As such it
+attempts to be small yet powerful enough to develop most of
+mathematics. It is not intended to be highly practical. If one looks
+in the small standard library that is included, one finds proofs and
+constructions that one could do quite a bit more quickly and
+conveniently in other proof assistents. Also with regard to
+performance it may not (yet?) be good enough support large
+developments in a practical way. Also, error reporting could be a bit
+more user friendly. So, it is admittedly a toy proof assistent, but
+still useable if one does not expect too much.
+
+System is an implementation of the Calculus of Constructions. This was
+chosen because it is abstract enough to develop the more abstract
+branches of mathematics. E.g., much of group theory is developed as
+theorems that do not specify one specific group. Dependent typing is
+very powerful in this regard. The Calculus of Constructions is by
+itself a framework for logic, so not enough to construct very much.
+To mend this, we add axioms where the general idea is that this is a
+small set and that the axioms in the standard library should be enough
+to develop most of mathematics without adding any further axioms.
+
+We list some features.
+
+(1) Classical logic. The standard library has as its most basic
+component the file logic.s. The particular definition of 'exists' in
+combination with the hilbert epsilon that is added as an axiom imply
+the law of excluded middle.
+
+(2) Proof irrelevance. This is added as an axiom in the file equal.s
+One very nice feature that this offers is to constuct subsets (subset
+in the type theory meaning of the word, not in the set theory meaning
+of the word) as a pair of an object of a certain type together with a
+property over that type. Since the property is proof irrelevant, every
+included object of the type leads to one and only one subset element.
+
+(3) A polymorphic type hierarchy like in Coq. The type of Prop is
+Type(1) and every Type(i) is of type Type(i+1). The user does not have
+to add type indices manually. As in Coq, one can simply write 'Type'
+and universe level contstraints are maintained and checked.
+
+(4) The natural numbers are introduced with the help of an inifity
+axiom that states that an infinite set exists. It states that there is
+a type called 'ind' in which a function of type ind -> ind exists that
+is injective but not surjective. This implies that ind has infinitely
+many members. This construction is the same as used in HOL Light.
+
+Learning the system language.
+
+Since it was designed to be simple, there really is not too much to
+learn. We suggest reading about the Calculus of Constructions and
+having a look at the files in the standard library. This is the 'lib'
+directory in source code.
+
+Running the system program.
+
+To use the system program, run 'make install' as detailed in the
+INSTALL file.  After that, create a system source file, ending in .s,
+anywhere in the file system. To type check this, run 'system
+sourcefile.s'. If the source file is valid, there will not be any
+response. If there is an error this is writen to standard output.
+
+It is possible to refer to other system files in the current directory
+or in the system standard library by using the Require command in a
+source file.
+

@@ -1,0 +1,4 @@
+
+Definition Bla: Prop
+:= Thing.
+

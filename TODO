@@ -1,0 +1,44 @@
+
+- other executable can be built
+- other executable has library path & path of argument
+- library path is set when configuring
+- executable: a default path should be compiled in
+
+- prove my code correct porting it to set theory
+- as little axioms/code as possible, but workable basis for proofs
+
+- 'Prop' can be a flyweight
+- maybe other things can be flyweights as well
+- maybe reduction can be more efficient, reducing the latest declared things
+  first
+
+- definitions can have parameters
+- formalize inf prime numbers
+
+- if imported file does not exist it report an error/throw
+- when a command misses a . at the end of the file it says that there
+  is an unexpected token EOF but that is not readable
+
+- maybe hashing method can be improved
+- hash terms as well
+- it may be more efficient of Terms contain a pointer to their type that
+  is determined only once
+- names could contain a pointer to their expansion
+
+- same parameters often occur in both type of definition and definition body
+
+- use reduction_equal instead of normalize in more places
+- remove normalize function/methods/this_is_normal/is_normal
+
+LATER
+- we may want = as a notation for equal, including implicit argument
+- better syntax for parsed file: exists as a notation
+- better error reporting for parsing
+- using an own string streambuf class that does not need to copy a string
+  on construction may be more efficient
+- shared_ptr/shared_from_this may be inefficient, try with own shared ptr
+
+- module stack does not work with files that occur in both directories
+- stdlib cannot import files from user directory
+- own lib prefers own directory to stdlib one
+
