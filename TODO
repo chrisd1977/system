@@ -1,9 +1,4 @@
 
-- other executable can be built
-- other executable has library path & path of argument
-- library path is set when configuring
-- executable: a default path should be compiled in
-
 - prove my code correct porting it to set theory
 - as little axioms/code as possible, but workable basis for proofs
 

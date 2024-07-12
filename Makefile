@@ -3,6 +3,7 @@ SRC_LIB = $(shell ls src/*.cpp src/parsing/*.cpp)
 SRC_MAIN = main.cpp
 SRC_TEST = $(shell ls test/*.cpp)
 SYSTEM_LIB = $(shell ls lib/*.s)
+VERSION = 1.0.0
 
 CPPOPTS = -g
 
@@ -42,7 +43,8 @@ uninstall:
 
 %.o: %.cpp
 	@echo g++ $(CPPOPTS) -o $@ -c $<
-	@g++ $(CPPOPTS) -I src -I src/parsing -DLIBDIR=\"$(LIBDIR)\" -o $@ -c $<
+	@g++ $(CPPOPTS) -I src -I src/parsing -DLIBDIR=\"$(LIBDIR)\" -DVERSION=\"$(VERSION)\" \
+		-o $@ -c $<
 
 clean:
 	rm -f src/*.o src/*.d src/parsing/*.o src/parsing/*.d test/*.o test/*.d

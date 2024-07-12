@@ -2,13 +2,20 @@
 #include "system.h"
 #include <iostream>
 #include <fstream>
+#include <cstring>
 
 int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
         std::cout << "Usage: " << argv[0] << " <input_file>" << std::endl;
+        std::cout << "Usage: " << argv[0] << " --version" << std::endl;
         return 1;
+    }
+    if (!strcmp(argv[1], "--version"))
+    {
+        std::cout << "System version " VERSION << std::endl;
+        return 0;
     }
     std::filebuf buf;
     if (!buf.open(argv[1], std::ios_base::in))
