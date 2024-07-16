@@ -30,7 +30,7 @@ combination with the hilbert epsilon that is added as an axiom imply
 the law of excluded middle.
 
 (2) Proof irrelevance. This is added as an axiom in the file equal.s
-One very nice feature that this offers is to constuct subsets (subset
+One very nice feature that this offers is to construct subsets (subset
 in the type theory meaning of the word, not in the set theory meaning
 of the word) as a pair of an object of a certain type together with a
 property over that type. Since the property is proof irrelevant, every
@@ -39,7 +39,7 @@ included object of the type leads to one and only one subset element.
 (3) A polymorphic type hierarchy like in Coq. The type of Prop is
 Type(1) and every Type(i) is of type Type(i+1). The user does not have
 to add type indices manually. As in Coq, one can simply write 'Type'
-and universe level contstraints are maintained and checked.
+and universe level constraints are maintained and checked.
 
 (4) The natural numbers are introduced with the help of an inifity
 axiom that states that an infinite set exists. It states that there is
