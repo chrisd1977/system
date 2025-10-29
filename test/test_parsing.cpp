@@ -250,7 +250,7 @@ TEST(Parsing, StandardEnvironment)
 {
    Environment e;
    std::stringbuf buf(
-        "Require plus. Require logic. Require mult.");
+        "Require plus. Require logic. Require mult. Require if.");
    parse_environment(buf, e, { "lib" });
    e.type_of("True");
 }
