@@ -77,3 +77,25 @@ Definition if_false:
    and_right (P -> equal S (if S P s1 s2) s1) (not P -> equal S (if S P s1 s2) s2)
       (epsilon_property S (satisfies_if S P s1 s2) (if_exists S P s1 s2)).
 
+Definition if_induction:
+   forall S: Type,
+   forall P: S -> Prop,
+   forall Q: Prop,
+   forall s1: S,
+   forall s2: S,
+   (Q -> P s1) ->
+   (not Q -> P s2) ->
+   P (if S Q s1 s2)
+:= lambda S: Type,
+   lambda P: S -> Prop,
+   lambda Q: Prop,
+   lambda s1: S,
+   lambda s2: S,
+   lambda H1: Q -> P s1,
+   lambda H2: not Q -> P s2,
+   or_induction Q (not Q) (P (if S Q s1 s2)) (excluded_middle Q)
+      (lambda H3: Q,
+       equal_symmetry S (if S Q s1 s2) s1 (if_true S Q s1 s2 H3) P (H1 H3))
+      (lambda H3: not Q,
+       equal_symmetry S (if S Q s1 s2) s2 (if_false S Q s1 s2 H3) P (H2 H3)).
+

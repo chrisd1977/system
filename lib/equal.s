@@ -103,3 +103,28 @@ Definition equal_function:
    lambda H1: equal S s1 s2,
    rewrite S (lambda s: S, equal T (f s1) (f s)) s1 s2 H1 (equal_reflexivity T (f s1)).
 
+Definition equal_function2:
+   forall S: Type,
+   forall T: Type,
+   forall U: Type,
+   forall f: S -> T -> U,
+   forall s1: S,
+   forall s2: S,
+   forall t1: T,
+   forall t2: T,
+   equal S s1 s2 ->
+   equal T t1 t2 ->
+   equal U (f s1 t1) (f s2 t2)
+:= lambda S: Type,
+   lambda T: Type,
+   lambda U: Type,
+   lambda f: S -> T -> U,
+   lambda s1: S,
+   lambda s2: S,
+   lambda t1: T,
+   lambda t2: T,
+   lambda H1: equal S s1 s2,
+   lambda H2: equal T t1 t2,
+   equal_function S (T -> U) f s1 s2 H1 (lambda g: T -> U, equal U (f s1 t1) (g t2))
+      (equal_function T U (f s1) t1 t2 H2).
+
