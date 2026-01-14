@@ -87,6 +87,57 @@ Definition rewrite_rev:
    lambda H1: equal S s1 s2,
    rewrite S P s2 s1 (equal_symmetry S s1 s2 H1).
 
+Definition rewrite_rewrite_rev_inverse:
+   forall S: Type,
+   forall P: S -> Type,
+   forall s1: S,
+   forall s2: S,
+   forall H1: equal S s1 s2,
+   forall p: P s2,
+   equal (P s2) (rewrite S P s1 s2 H1 (rewrite_rev S P s1 s2 H1 p)) p
+:= lambda S: Type,
+   lambda P: S -> Type,
+   lambda s1: S,
+   lambda s2: S,
+   lambda H1: equal S s1 s2,
+   lambda p: P s2,
+   equal_symmetry S s1 s2 H1
+      (lambda s1: S,
+       forall H2: equal S s1 s2,
+       equal (P s2) (rewrite S P s1 s2 H2 (rewrite_rev S P s1 s2 H2 p)) p)
+      (lambda H2: equal S s2 s2,
+       equal_transitivity (P s2) (rewrite S P s2 s2 H2 (rewrite_rev S P s2 s2 H2 p))
+          (rewrite_rev S P s2 s2 H2 p)
+          p
+          (rewrite_same S P s2 H2 (rewrite_rev S P s2 s2 H2 p))
+          (rewrite_same S P s2 (equal_symmetry S s2 s2 H2) p))
+      H1.
+
+Definition rewrite_rev_rewrite_inverse:
+   forall S: Type,
+   forall P: S -> Type,
+   forall s1: S,
+   forall s2: S,
+   forall H: equal S s1 s2,
+   forall p: P s1,
+   equal (P s1) (rewrite_rev S P s1 s2 H (rewrite S P s1 s2 H p)) p
+:= lambda S: Type,
+   lambda P: S -> Type,
+   lambda s1: S,
+   lambda s2: S,
+   lambda H1: equal S s1 s2,
+   lambda p: P s1,
+   H1 (lambda s2: S,
+       forall H2: equal S s1 s2,
+        equal (P s1) (rewrite_rev S P s1 s2 H2 (rewrite S P s1 s2 H2 p)) p)
+      (lambda H2: equal S s1 s1,
+       equal_transitivity (P s1) (rewrite_rev S P s1 s1 H2 (rewrite S P s1 s1 H2 p))
+          (rewrite S P s1 s1 H2 p)
+          p
+          (rewrite_same S P s1 (equal_symmetry S s1 s1 H2) (rewrite S P s1 s1 H2 p))
+          (rewrite_same S P s1 H2 p))
+      H1.
+
 Definition equal_function:
    forall S: Type,
    forall T: Type,

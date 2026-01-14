@@ -1,4 +1,18 @@
 
+
+
+red compare: t1 =
+(lambda k: nat.nat, ((plus.plus .k) ((mult.mult .i) .j))) ((plus.plus (nat.succ .i)) .j)
+red compare: t2 =
+(plus.plus ((plus.plus (nat.succ .i)) .j)) ((mult.mult .i) .j)
+
+
+
+(((plus.plus ((plus.plus (nat.succ .i)) .j)) ((mult.mult .i) .j)))
+
+
+- Type::red_compare always returning true, may not be correct
+
 - prove my code correct porting it to set theory
 - as little axioms/code as possible, but workable basis for proofs
 

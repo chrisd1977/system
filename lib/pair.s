@@ -70,7 +70,7 @@ Definition make_pair_second_any_first_equality:
           (rewrite S (lambda s: S, T) (first S T (make_pair S T s t)) s H2
               (second S T (make_pair S T s t)))
           t)
-      (make_dep_pair_second S (lambda s: S, T) s t).
+      (make_dep_pair_second_rev S (lambda s: S, T) s t).
 
 Definition make_pair_second:
    forall S: Type,

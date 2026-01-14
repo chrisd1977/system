@@ -5,16 +5,16 @@ SRC_TEST = $(shell ls test/*.cpp)
 SYSTEM_LIB = $(shell ls lib/*.s)
 VERSION = 1.0.0
 
-CPPOPTS = -g
+CPPOPTS = -g -O2
 
 system: $(SRC_LIB:.cpp=.o) $(SRC_MAIN:.cpp=.o)
-	g++ -o system $^
+	g++ $(CPPOPTS) -o system $^
 
 check: test_system $(SYSTEM_LIB)
 	./test_system
 
 test_system: $(SRC_LIB:.cpp=.o) $(SRC_TEST:.cpp=.o)
-	g++ -o test_system -lgtest $^
+	g++ $(CPPOPTS) -o test_system -lgtest $^
 
 ifneq ($(MAKECMDGOALS), clean)
 ifneq ($(MAKECMDGOALS), distclean)
